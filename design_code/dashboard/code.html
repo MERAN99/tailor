@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f8f9fa",
+                    "surface-container-high": "#e5e9eb",
+                    "on-primary": "#f5f9ff",
+                    "on-primary-fixed-variant": "#2a5975",
+                    "tertiary-fixed-dim": "#bbc1ef",
+                    "primary-fixed-dim": "#a1cfef",
+                    "secondary-container": "#d1e6f0",
+                    "surface-variant": "#dee3e6",
+                    "primary-dim": "#285874",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-container": "#3e456c",
+                    "secondary-fixed": "#d1e6f0",
+                    "tertiary-container": "#c9cffe",
+                    "on-primary-container": "#1e4f6b",
+                    "secondary": "#4f626b",
+                    "on-tertiary": "#faf8ff",
+                    "tertiary-fixed": "#c9cffe",
+                    "on-primary-fixed": "#003c57",
+                    "inverse-surface": "#0c0f10",
+                    "error-dim": "#67040d",
+                    "surface-dim": "#d5dbdd",
+                    "on-error": "#fff7f6",
+                    "primary": "#366480",
+                    "on-tertiary-fixed-variant": "#484e76",
+                    "on-background": "#2d3335",
+                    "on-secondary-fixed": "#2f424a",
+                    "outline": "#767c7e",
+                    "secondary-dim": "#43565f",
+                    "surface-container-highest": "#dee3e6",
+                    "surface": "#f8f9fa",
+                    "on-secondary-container": "#41545d",
+                    "tertiary": "#565d85",
+                    "error-container": "#fa746f",
+                    "on-error-container": "#6e0a12",
+                    "surface-container": "#ebeef0",
+                    "on-surface-variant": "#5a6062",
+                    "on-surface": "#2d3335",
+                    "secondary-fixed-dim": "#c3d8e2",
+                    "tertiary-dim": "#4a5178",
+                    "primary-container": "#afddfe",
+                    "on-secondary": "#f2faff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#9b9d9e",
+                    "outline-variant": "#adb3b5",
+                    "on-tertiary-fixed": "#2b3257",
+                    "inverse-primary": "#afddfe",
+                    "on-secondary-fixed-variant": "#4b5e67",
+                    "surface-container-low": "#f1f4f5",
+                    "primary-fixed": "#afddfe",
+                    "error": "#a83836",
+                    "surface-tint": "#366480"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="w-full border-b-0 bg-[#f1f4f5] transition-colors duration-300 flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#366480]">TailorMaster</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#366480] border-b-2 border-[#366480] pb-1" href="#">Dashboard</a>
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] transition-all" href="#">Orders</a>
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] transition-all" href="#">Clients</a>
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] transition-all" href="#">Inventory</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:block relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-high border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary" placeholder="Quick find..." type="text"/>
+</div>
+<button class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] scale-95 active:opacity-80 transition-transform">Logout</button>
+<img alt="Tailor Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="close-up portrait of a professional male tailor in a workshop environment with soft warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd51UWwu4i05EwYmBfBOPYHArKeVIdD4Wojl6zOFhC9yVQclM2f53G_ybIxINBFnEWPDUqpNutU1PHtc_UiE1Wje8D1H5Yj532SSj8TeUMArZazsOFpwzszfYP9vJSoGzvv61VDuuQPdqj_zD60-0aPa2mRAn4lTylKGuOAj4AC7cBlaqTQRC1vJzUt2G0EipALqROKyr7rS1eu69HRz9ENQEW__n5y7-9Uv0cpzwC8A3MEAjMVATVtwDLVcwQzrXHwkISU36Euw"/>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center p-8 max-w-7xl mx-auto w-full">
+<!-- Welcome Section -->
+<div class="text-center mb-16 max-w-2xl">
+<h1 class="text-[2.75rem] font-bold tracking-tight text-on-background mb-4 leading-tight">Master's Workspace</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                Seamlessly manage your bespoke creations. Start by selecting an action from your specialized utility patterns below.
+            </p>
+</div>
+<!-- Hero Actions (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+<!-- Add Customer Card -->
+<div class="group relative overflow-hidden bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-transparent hover:border-primary/20">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+<div class="flex flex-col h-full">
+<div class="w-16 h-16 bg-primary-container rounded-lg flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="person_add">person_add</span>
+</div>
+<h2 class="text-3xl font-bold text-on-surface mb-4">Add Customer</h2>
+<p class="text-on-surface-variant mb-10 flex-1">Capture precise measurements, fabric preferences, and initial sketches for a new bespoke journey.</p>
+<div class="flex items-center text-primary font-bold tracking-tight group-hover:translate-x-2 transition-transform">
+                        Create New Profile
+                        <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Search Customers Card -->
+<div class="group relative overflow-hidden bg-surface-container-lowest p-10 rounded-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-transparent hover:border-primary/20">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+<div class="flex flex-col h-full">
+<div class="w-16 h-16 bg-secondary-container rounded-lg flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-secondary text-4xl" data-icon="manage_search">manage_search</span>
+</div>
+<h2 class="text-3xl font-bold text-on-surface mb-4">Search Customers</h2>
+<p class="text-on-surface-variant mb-10 flex-1">Retrieve historical patterns, update measurements, or check current order status across your clientele.</p>
+<div class="flex items-center text-secondary font-bold tracking-tight group-hover:translate-x-2 transition-transform">
+                        Browse Directory
+                        <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Information / Recent Activity -->
+<div class="mt-20 w-full max-w-4xl">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-primary mb-2">Today's Fittings</h3>
+<p class="text-on-surface-variant">Active sessions scheduled for this afternoon.</p>
+</div>
+<button class="text-primary font-semibold text-sm hover:underline">View Schedule</button>
+</div>
+<div class="space-y-4">
+<!-- Asymmetric List Items (No Borders Rule) -->
+<div class="flex items-center p-6 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-6 font-bold text-primary">JD</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">James D. Harrison</p>
+<p class="text-sm text-on-surface-variant">Navy Cashmere Overcoat • Final Fitting</p>
+</div>
+<div class="text-right">
+<p class="font-medium text-on-surface">14:30</p>
+<p class="text-xs text-on-surface-variant">Pattern #2241</p>
+</div>
+</div>
+<div class="flex items-center p-6 bg-surface-container-lowest rounded-lg transition-all hover:bg-surface-container-high">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-6 font-bold text-primary">EL</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">Eleanor Lancaster</p>
+<p class="text-sm text-on-surface-variant">Linen Summer Suit • Measurement Capture</p>
+</div>
+<div class="text-right">
+<p class="font-medium text-on-surface">16:00</p>
+<p class="text-xs text-on-surface-variant">New Pattern</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden on Dashboard based on prompt focus, but structure prepared) -->
+<!-- Suppressed to prioritize the two main actions per instructions -->
+<footer class="mt-auto p-8 border-t-0 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto flex justify-between items-center text-on-surface-variant text-sm">
+<div class="flex items-center gap-4">
+<span class="font-bold text-primary">TailorMaster</span>
+<span>© 2024 Bespoke Utility Systems</span>
+</div>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

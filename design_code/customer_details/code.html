@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f8f9fa",
+                    "surface-container-high": "#e5e9eb",
+                    "on-primary": "#f5f9ff",
+                    "on-primary-fixed-variant": "#2a5975",
+                    "tertiary-fixed-dim": "#bbc1ef",
+                    "primary-fixed-dim": "#a1cfef",
+                    "secondary-container": "#d1e6f0",
+                    "surface-variant": "#dee3e6",
+                    "primary-dim": "#285874",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-container": "#3e456c",
+                    "secondary-fixed": "#d1e6f0",
+                    "tertiary-container": "#c9cffe",
+                    "on-primary-container": "#1e4f6b",
+                    "secondary": "#4f626b",
+                    "on-tertiary": "#faf8ff",
+                    "tertiary-fixed": "#c9cffe",
+                    "on-primary-fixed": "#003c57",
+                    "inverse-surface": "#0c0f10",
+                    "error-dim": "#67040d",
+                    "surface-dim": "#d5dbdd",
+                    "on-error": "#fff7f6",
+                    "primary": "#366480",
+                    "on-tertiary-fixed-variant": "#484e76",
+                    "on-background": "#2d3335",
+                    "on-secondary-fixed": "#2f424a",
+                    "outline": "#767c7e",
+                    "secondary-dim": "#43565f",
+                    "surface-container-highest": "#dee3e6",
+                    "surface": "#f8f9fa",
+                    "on-secondary-container": "#41545d",
+                    "tertiary": "#565d85",
+                    "error-container": "#fa746f",
+                    "on-error-container": "#6e0a12",
+                    "surface-container": "#ebeef0",
+                    "on-surface-variant": "#5a6062",
+                    "on-surface": "#2d3335",
+                    "secondary-fixed-dim": "#c3d8e2",
+                    "tertiary-dim": "#4a5178",
+                    "primary-container": "#afddfe",
+                    "on-secondary": "#f2faff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#9b9d9e",
+                    "outline-variant": "#adb3b5",
+                    "on-tertiary-fixed": "#2b3257",
+                    "inverse-primary": "#afddfe",
+                    "on-secondary-fixed-variant": "#4b5e67",
+                    "surface-container-low": "#f1f4f5",
+                    "primary-fixed": "#afddfe",
+                    "error": "#a83836",
+                    "surface-tint": "#366480"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .measurement-row:nth-child(even) {
+            background-color: #f1f4f5;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar -->
+<nav class="w-full border-b-0 bg-[#f1f4f5] transition-colors duration-300 flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="text-2xl font-black text-[#366480] tracking-tight">TailorMaster</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] transition-all" href="#">Dashboard</a>
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#366480] border-b-2 border-[#366480] pb-1" href="#">Clients</a>
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] transition-all" href="#">Orders</a>
+<a class="font-['Inter'] font-semibold text-lg tracking-tight text-[#5a6062] hover:text-[#366480] transition-all" href="#">Inventory</a>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest rounded-lg border-none focus:ring-2 focus:ring-primary text-sm w-64" placeholder="Search clients..." type="text"/>
+</div>
+<button class="text-[#5a6062] hover:text-[#366480] font-semibold">Logout</button>
+</div>
+</nav>
+<!-- Sidebar & Content Wrapper -->
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen w-64 sticky left-0 top-0 bg-[#f1f4f5] py-6 pl-4">
+<div class="mb-8 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-[#366480] leading-none">The Master's Pattern</h2>
+<p class="text-xs text-on-surface-variant mt-1">Bespoke Utility</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 pr-4">
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] hover:translate-x-1 transition-transform font-medium text-sm" href="#">
+<span class="material-symbols-outlined">straighten</span> Measurements
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] hover:translate-x-1 transition-transform font-medium text-sm" href="#">
+<span class="material-symbols-outlined">texture</span> Fabric Patterns
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] hover:translate-x-1 transition-transform font-medium text-sm" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Schedule
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] hover:translate-x-1 transition-transform font-medium text-sm" href="#">
+<span class="material-symbols-outlined">badge</span> Staff
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] hover:translate-x-1 transition-transform font-medium text-sm" href="#">
+<span class="material-symbols-outlined">analytics</span> Reports
+                </a>
+</nav>
+<div class="mt-auto space-y-1 pr-4">
+<button class="w-full bg-primary text-on-primary py-3 rounded-md font-bold mb-4 flex items-center justify-center gap-2 scale-95 active:opacity-80 transition-transform">
+<span class="material-symbols-outlined">add</span> New Order
+                </button>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] font-medium text-sm" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#5a6062] hover:bg-[#dee3e6] font-medium text-sm" href="#">
+<span class="material-symbols-outlined">help</span> Help
+                </a>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 p-8 md:p-12 max-w-6xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant text-sm mb-4">
+<span>Clients</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-medium">Profile Details</span>
+</nav>
+<h1 class="text-[2.75rem] font-bold leading-tight tracking-tight text-on-background">Aram Khalil Jaf</h1>
+<p class="text-on-surface-variant text-lg mt-2">Premium Member • ID: #TM-8829</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 border-2 border-primary text-primary font-bold rounded-md hover:bg-primary-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">edit</span> EDIT PROFILE
+                    </button>
+<button class="px-6 py-3 bg-error text-on-error font-bold rounded-md hover:bg-error-dim transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">delete</span> DELETE
+                    </button>
+</div>
+</header>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Profile Summary Card -->
+<div class="md:col-span-4 space-y-8">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-b-2 border-primary">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-6 bg-surface-container mx-auto">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a middle-aged man with short beard in a minimalist studio setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4x8jLsZusAhu3Z9fWLgDvMVKmUXYQ4Vx51BfTiHGAljXfkgrocvJaXFUws1k8u2Ou5YpIYBqFibenEdWVEfXEBAtF-AkTSYpANpbTAOUD1inSsjj7wzy1K5uhIMzSJmm2LGq8KFT5aQvYzt9vGo3ecByzJHMaOciENy2Urb7EkW_tOYkNyAraH4Nt_jsGfTeioOIcASB8bFCGEhoJ802JDeeatuo1_a_yHegKSVI_xugUG8J8i5jv49CGRZ5hsi7CMJRKUVOr8Q"/>
+</div>
+<div class="text-center">
+<h3 class="font-bold text-xl mb-1">Contact Info</h3>
+<p class="text-on-surface-variant text-sm flex items-center justify-center gap-2 mb-2">
+<span class="material-symbols-outlined text-sm">call</span> +964 770 123 4567
+                            </p>
+<p class="text-on-surface-variant text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span> Sulaymaniyah, Kurdistan
+                            </p>
+</div>
+</div>
+<!-- Internal Notes -->
+<div class="bg-surface-container p-8 rounded-xl">
+<h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sticky_note_2</span> 
+                            Notes / تێبینییەکان
+                        </h3>
+<p class="text-on-surface-variant leading-relaxed text-sm italic">
+                            "Prefers a slightly slimmer fit around the waist for formal shirts. Usually selects heavy linen for summer patterns. Last fitting was 2 weeks ago."
+                        </p>
+</div>
+</div>
+<!-- Measurement Grid Section -->
+<div class="md:col-span-8">
+<div class="bg-surface-container-lowest p-1 rounded-xl shadow-sm">
+<div class="p-6 border-b border-surface-variant flex justify-between items-center">
+<h2 class="text-xl font-bold text-on-background">Body Measurements / پێوانەکان</h2>
+<span class="text-xs font-bold bg-primary-container text-on-primary-container px-3 py-1 rounded-full uppercase tracking-widest">Standard CM</span>
+</div>
+<div class="divide-y divide-surface-variant/20">
+<!-- Measurement Row -->
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Neck / مل</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Circumference</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">42.5 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Chest / سنگ</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Full chest width</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">104.0 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Waist / ناوقەد</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Natural waistline</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">92.5 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Shoulder / شان</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Seam to seam</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">48.0 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Sleeve / قۆڵ</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Shoulder to cuff</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">64.5 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Length / درێژی</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Total garment height</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">78.0 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+<div class="flex items-center justify-between p-5 measurement-row">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Hip / سمت</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">Widest point</span>
+</div>
+<span class="text-xl font-mono font-bold text-on-background">106.5 <span class="text-xs font-sans text-on-surface-variant">cm</span></span>
+</div>
+</div>
+</div>
+<!-- Order History Teaser -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Preferred Fabric</h4>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-resolution close-up of dark navy herringbone wool fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs_tJZVo1oQycEfTn5N2wwg6cdEkYizRqSBhHhv2lwhsqzZ6F7DF1HnH9wWuaJgB2Vg7-FMB3AdNJqy3oyJvj8zkovk6kDf5q-mk578hXXpY8ZoHG1eXCqEG_NX_lKWY9prQa1jE84hQ0--rMEkgU02GG1qGOxaXbClqagN9hs8ABOUd_9U2Mz_l-4SPAdw8BgOgm7nJ6-_CR0LGh1Yca2y_1hX6mNt5zaSja1jZP6SyXg_gBw44fTEBXrN4bGClR0IuxJG52bhg"/>
+</div>
+<div>
+<p class="font-bold text-on-background">Navy Herringbone</p>
+<p class="text-xs text-on-surface-variant">Italian Wool Blend</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Recent Activity</h4>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Last Order</span>
+<span class="font-medium">May 12, 2024</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Total Orders</span>
+<span class="font-medium">14 Designs</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/80 backdrop-blur-xl border-t-0 py-3 px-6 flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-[10px] font-bold">Clients</span>
+</button>
+<div class="-mt-8">
+<button class="w-12 h-12 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">straighten</span>
+<span class="text-[10px] font-medium">Measure</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</nav>
+</body></html>
