@@ -2,73 +2,108 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const Sidebar = () => {
+const Sidebar = ({ mobileOpen = false, onClose }) => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const isRtl = i18n.language === 'ckb';
 
   const menuItems = [
     { name: t('nav.dashboard'), icon: 'dashboard', path: '/dashboard' },
     { name: t('nav.clients'), icon: 'group', path: '/search' },
-    { name: t('measurements.title') || 'Measurements', icon: 'straighten', path: '/measurements' },
-    { name: 'Fabric Patterns', icon: 'texture', path: '/fabrics' },
-    { name: 'Schedule', icon: 'calendar_today', path: '/schedule' },
-    { name: 'Staff', icon: 'badge', path: '/staff' },
-    { name: 'Reports', icon: 'analytics', path: '/reports' },
+    { name: t('nav.add_client'), icon: 'person_add', path: '/add-customer' },
+    { name: t('measurements.fit_type') !== 'measurements.fit_type' ? 'پێوانەکان' : 'Measurements', icon: 'straighten', path: '/measurements' },
   ];
 
   const secondaryItems = [
-    { name: 'Settings', icon: 'settings', path: '/settings' },
-    { name: 'Help', icon: 'help', path: '/help' },
+    { name: isRtl ? 'ڕێکخستنەکان' : 'Settings', icon: 'settings', path: '/settings' },
+    { name: t('nav.help'), icon: 'help_outline', path: '/help' },
+    { name: t('nav.logout'), icon: 'logout', path: '/login' },
   ];
 
-  const isRtl = i18n.language === 'ckb';
+  const sidebarClass = `
+    h-[calc(100vh-72px)] w-64 fixed top-[72px] z-40
+    ${isRtl ? 'right-0 border-l' : 'left-0 border-r'}
+    border-outline-variant/20
+    flex flex-col py-4
+    bg-surface-container-lowest shadow-lg md:shadow-none
+    transition-transform duration-300 ease-in-out
+    ${mobileOpen ? 'translate-x-0' : (isRtl ? 'translate-x-full md:translate-x-0' : '-translate-x-full md:translate-x-0')}
+  `;
+
+  const isActive = (path) =>
+    location.pathname === path ||
+    (path === '/search' && location.pathname.startsWith('/customer'));
 
   return (
-    <aside className={`h-[calc(100vh-76px)] w-64 fixed ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} top-[76px] hidden md:flex flex-col py-6 ${isRtl ? 'pr-4' : 'pl-4'} bg-surface-container-low border-outline-variant/10 transition-all`}>
-      <div className="mb-10 px-4">
+    <aside className={sidebarClass}>
+      {/* Brand */}
+      <div className="px-4 pb-4 mb-2 border-b border-outline-variant/20">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-primary">
-            <span className="material-symbols-outlined">straighten</span>
+          <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-on-primary text-lg">straighten</span>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-primary">TailorMaster</h2>
-            <p className="text-xs text-on-surface-variant font-medium">Bespoke Utility</p>
+            <p className="font-black text-primary text-base leading-none">TailorMaster</p>
+            <p className="text-[10px] text-on-surface-variant mt-0.5">
+              {isRtl ? 'سیستەمی خیاط' : 'Tailor Management'}
+            </p>
           </div>
         </div>
       </div>
-      
-      <nav className="flex-grow space-y-1">
-        {menuItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center gap-4 py-3 px-4 font-['Inter'] font-medium text-sm transition-transform ${isRtl ? 'hover:-translate-x-1' : 'hover:translate-x-1'} ${
-              location.pathname === item.path
-                ? 'text-primary bg-surface-container-high'
-                : 'text-on-surface-variant hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">{item.icon}</span>
-            <span>{item.name}</span>
-          </Link>
-        ))}
+
+      {/* Primary Nav */}
+      <nav className="flex-grow px-3 space-y-0.5 overflow-y-auto">
+        {menuItems.map((item) => {
+          const active = isActive(item.path);
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={onClose}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all duration-150 group ${
+                active
+                  ? 'bg-primary-container text-primary'
+                  : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+              }`}
+            >
+              <span
+                className="material-symbols-outlined text-xl shrink-0"
+                style={{ fontVariationSettings: active ? "'FILL' 1" : "'FILL' 0" }}
+              >
+                {item.icon}
+              </span>
+              <span>{item.name}</span>
+              {active && (
+                <span className={`${isRtl ? 'mr-auto' : 'ml-auto'} w-1.5 h-1.5 rounded-full bg-primary`} />
+              )}
+            </Link>
+          );
+        })}
       </nav>
 
-      <div className="mt-auto space-y-1 pb-10">
-        {secondaryItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center gap-4 py-3 px-4 font-['Inter'] font-medium text-sm transition-transform ${isRtl ? 'hover:-translate-x-1' : 'hover:translate-x-1'} ${
-              location.pathname === item.path
-                ? 'text-primary bg-surface-container-high'
-                : 'text-on-surface-variant hover:bg-surface-container-high'
-            }`}
-          >
-            <span className="material-symbols-outlined">{item.icon}</span>
-            <span>{item.name}</span>
-          </Link>
-        ))}
+      {/* Divider */}
+      <div className="mx-4 my-3 border-t border-outline-variant/20" />
+
+      {/* Secondary Nav */}
+      <div className="px-3 space-y-0.5 pb-4">
+        {secondaryItems.map((item) => {
+          const active = isActive(item.path);
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={onClose}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all duration-150 ${
+                active
+                  ? 'bg-primary-container text-primary'
+                  : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+              }`}
+            >
+              <span className="material-symbols-outlined text-xl shrink-0">{item.icon}</span>
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
       </div>
     </aside>
   );

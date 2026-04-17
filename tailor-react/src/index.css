@@ -3,22 +3,143 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-on-background min-h-screen flex flex-col font-body;
+    @apply bg-background text-on-background min-h-screen flex flex-col;
+    font-family: 'Noto Kufi Arabic', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Kurdish RTL support - use Noto Kufi Arabic for text */
+  [lang="ckb"], [dir="rtl"] {
+    font-family: 'Noto Kufi Arabic', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-surface-container; }
+  ::-webkit-scrollbar-thumb { @apply bg-outline-variant rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-primary/60; }
+
+  /* Selection */
+  ::selection { @apply bg-primary/20 text-primary; }
+}
+
+@layer components {
+  /* Reusable card */
+  .card {
+    @apply bg-surface-container-lowest rounded-xl shadow-card border border-outline-variant/20 transition-all duration-200;
+  }
+  .card-hover {
+    @apply card hover:shadow-card-lg hover:-translate-y-0.5;
+  }
+
+  /* Form inputs */
+  .input-field {
+    @apply w-full bg-surface-container border border-outline-variant/40 rounded-lg px-4 py-3 text-on-background
+           placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30
+           focus:border-primary transition-all duration-200 text-base;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dim text-on-primary font-bold px-6 py-3 rounded-lg
+           transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg
+           flex items-center justify-center gap-2 cursor-pointer;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply border-2 border-primary text-primary hover:bg-primary-container font-bold px-6 py-3 rounded-lg
+           transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 cursor-pointer;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply text-on-surface-variant hover:text-primary hover:bg-primary-container/50 font-semibold px-4 py-2 rounded-lg
+           transition-all duration-200 flex items-center gap-2 cursor-pointer;
+  }
+
+  /* Nav link active */
+  .nav-active {
+    @apply text-primary font-bold;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold tracking-wide;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-xs font-bold uppercase tracking-widest text-primary/80;
   }
 }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Glassmorphism header */
+.glass-header {
+  background: rgba(248, 248, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated underline */
+.animated-underline {
+  position: relative;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #4F46E5;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.animated-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* RTL animated underline */
+[dir="rtl"] .animated-underline::after {
+  right: 0;
+  left: auto;
+  transform-origin: right;
+}
+[dir="rtl"] .animated-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Responsive utility: touch-friendly minimum tap target */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
 }

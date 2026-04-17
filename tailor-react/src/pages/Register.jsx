@@ -5,98 +5,163 @@ import { useTranslation } from 'react-i18next';
 const Register = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const isRtl = i18n.language === 'ckb';
 
   const handleRegister = (e) => {
     e.preventDefault();
     navigate('/login');
   };
 
-  const isRtl = i18n.language === 'ckb';
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'ckb' : 'en');
+    document.documentElement.dir = i18n.language === 'en' ? 'ltr' : 'rtl';
+    document.documentElement.lang = i18n.language === 'en' ? 'en' : 'ckb';
+  };
 
   return (
-    <div className="bg-surface text-on-surface flex min-h-screen overflow-hidden">
-      <div className={`hidden lg:flex lg:w-1/2 relative bg-surface-container-low overflow-hidden ${isRtl ? 'order-2' : ''}`}>
-        <div className="absolute inset-0 z-0">
-          <img 
-            className="w-full h-full object-cover grayscale opacity-30 mix-blend-multiply" 
-            alt="Tailoring atelier"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3CYy8fZOS-pETI5n8vGsqdqQp3-LET0OmPcPNfRDdfQs7HV5_OohuDYqMd7TooUt0_b07iubb5Eox99dbwnJcUDkZEDTCo6N6Ypmdyfml13b-0qPI2SZdA2b3Rbe8KB5z2ImP15S8_hEvH-1VgfZjsfEleqIdi5Bh3nviV_dtQ5HXqS3CR4Lf5O1RJZ2JrRAXFGWVf4Az-WH-4fFHtVeRo2s6-k_Ljgg03Kvz592YjSfhbzZK4iJGRv5kF6ePCov0TLFCJeAdtg"
-          />
-        </div>
-        <div className="relative z-10 flex flex-col justify-between p-16 w-full">
-          <div>
-            <h1 className="text-primary font-black text-3xl tracking-tight">TailorMaster</h1>
-          </div>
-          <div className="max-w-md">
-            <p className="text-4xl font-bold leading-tight tracking-tighter text-on-background mb-6">
-              {t('register.title')}
-            </p>
-            <div className={`flex items-center ${isRtl ? 'space-x-reverse' : ''} space-x-4`}>
-              <div className="h-px w-12 bg-primary"></div>
-              <p className="text-on-surface-variant font-medium tracking-wide uppercase text-xs">Est. MMXXIV</p>
+    <div className="min-h-screen bg-gradient-to-br from-background via-tertiary-container/20 to-primary-container/30 flex items-center justify-center p-4" dir={isRtl ? 'rtl' : 'ltr'}>
+
+      {/* Language Toggle */}
+      <button
+        onClick={toggleLanguage}
+        className="fixed top-4 end-4 z-50 flex items-center gap-1.5 px-3 py-2 rounded-full bg-surface-container-lowest/90 backdrop-blur border border-outline-variant/30 text-xs font-bold text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all shadow-sm"
+      >
+        <span className="material-symbols-outlined text-base">translate</span>
+        {isRtl ? 'English' : 'کوردی'}
+      </button>
+
+      <div className="w-full max-w-4xl animate-slide-up">
+        <div className="grid grid-cols-1 md:grid-cols-2 bg-surface-container-lowest rounded-2xl shadow-card-lg overflow-hidden border border-outline-variant/20">
+
+          {/* ── Brand Panel ── */}
+          <div className="hidden md:flex relative bg-gradient-to-br from-tertiary via-tertiary-dim to-[#047857] flex-col justify-between p-10 overflow-hidden">
+            <div className="absolute -top-16 -end-16 w-56 h-56 rounded-full bg-white/5 border border-white/10" />
+            <div className="absolute -bottom-10 -start-10 w-40 h-40 rounded-full bg-white/5 border border-white/10" />
+
+            {/* Logo */}
+            <div className="relative z-10 flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                <span className="material-symbols-outlined text-white text-lg">content_cut</span>
+              </div>
+              <span className="text-white font-black text-xl">TailorMaster</span>
+            </div>
+
+            {/* Text */}
+            <div className="relative z-10">
+              <h1 className="text-white text-4xl font-black leading-tight mb-4 tracking-tight">
+                {t('register.title')}
+              </h1>
+              <p className="text-white/70 text-sm leading-relaxed max-w-xs">
+                {t('register.sub')}
+              </p>
+
+              {/* Features */}
+              <div className="mt-8 space-y-3">
+                {[
+                  { icon: 'straighten', text: isRtl ? 'بەڕێوەبردنی پێوانەکان' : 'Measurement Management' },
+                  { icon: 'group', text: isRtl ? 'پرۆفایلی کڕیار' : 'Client Profiles' },
+                  { icon: 'calendar_today', text: isRtl ? 'خشتەی کاتەکان' : 'Appointment Scheduling' },
+                ].map((f) => (
+                  <div key={f.text} className="flex items-center gap-3 text-white/80">
+                    <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0">
+                      <span className="material-symbols-outlined text-sm">{f.icon}</span>
+                    </div>
+                    <span className="text-sm font-medium">{f.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 md:px-24 bg-surface">
-        <div className="w-full max-sm:max-w-xs max-w-sm">
-          <div className="mb-12">
-            <h2 className="text-3xl font-black text-on-background tracking-tighter mb-2">{t('register.welcome')}</h2>
-            <p className="text-on-surface-variant font-medium text-sm">{t('register.welcome_sub')}</p>
-          </div>
-          <form className="space-y-8" onSubmit={handleRegister}>
-            <div className="space-y-6">
-              <div className="relative group">
-                <label className="block text-primary text-xs font-bold uppercase tracking-widest mb-2 px-1">{t('register.full_name')}</label>
-                <input 
-                  className="w-full bg-surface-container-highest border-none focus:ring-0 focus:bg-surface-container-lowest text-on-background py-5 px-6 transition-all duration-300 border-b-2 border-transparent focus:border-primary placeholder:text-outline-variant" 
-                  placeholder="Arthur Pendragon" 
-                  type="text"
-                />
+
+          {/* ── Form Panel ── */}
+          <div className="flex flex-col justify-center p-8 sm:p-10">
+            {/* Mobile logo */}
+            <div className="flex items-center gap-2 mb-8 md:hidden">
+              <div className="w-8 h-8 rounded-lg bg-tertiary flex items-center justify-center">
+                <span className="material-symbols-outlined text-on-tertiary text-base">content_cut</span>
               </div>
-              <div className="relative group">
-                <label className="block text-primary text-xs font-bold uppercase tracking-widest mb-2 px-1">{t('register.email')}</label>
-                <input 
-                  className="w-full bg-surface-container-highest border-none focus:ring-0 focus:bg-surface-container-lowest text-on-background py-5 px-6 transition-all duration-300 border-b-2 border-transparent focus:border-primary placeholder:text-outline-variant" 
-                  placeholder="master@tailor.com" 
-                  type="email"
-                />
-              </div>
-              <div className="relative group">
-                <label className="block text-primary text-xs font-bold uppercase tracking-widest mb-2 px-1">{t('register.password')}</label>
-                <input 
-                  className="w-full bg-surface-container-highest border-none focus:ring-0 focus:bg-surface-container-lowest text-on-background py-5 px-6 transition-all duration-300 border-b-2 border-transparent focus:border-primary placeholder:text-outline-variant" 
-                  placeholder="••••••••" 
-                  type="password"
-                />
-              </div>
+              <span className="font-black text-lg text-tertiary">TailorMaster</span>
             </div>
-            <div className="pt-4">
-              <button 
-                className="w-full bg-primary hover:bg-primary-dim text-on-primary font-bold py-5 px-8 rounded-md transition-all duration-300 active:scale-95 shadow-lg shadow-primary/10" 
-                type="submit"
-              >
+
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-black text-on-background tracking-tight mb-1">
+                {t('register.welcome')}
+              </h2>
+              <p className="text-on-surface-variant text-sm">{t('register.welcome_sub')}</p>
+            </div>
+
+            <form className="space-y-5" onSubmit={handleRegister}>
+              {/* Full Name */}
+              <div>
+                <label className="block section-label mb-1.5" htmlFor="reg-name">
+                  {t('register.full_name')}
+                </label>
+                <div className="relative">
+                  <span className={`material-symbols-outlined absolute ${isRtl ? 'right-3' : 'left-3'} top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-lg pointer-events-none`}>
+                    storefront
+                  </span>
+                  <input
+                    id="reg-name"
+                    type="text"
+                    placeholder={isRtl ? 'خیاطخانەی ئەحمەد' : 'Ahmed Tailoring'}
+                    className={`input-field ${isRtl ? 'pr-10' : 'pl-10'}`}
+                  />
+                </div>
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block section-label mb-1.5" htmlFor="reg-email">
+                  {t('register.email')}
+                </label>
+                <div className="relative">
+                  <span className={`material-symbols-outlined absolute ${isRtl ? 'right-3' : 'left-3'} top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-lg pointer-events-none`}>
+                    mail
+                  </span>
+                  <input
+                    id="reg-email"
+                    type="email"
+                    placeholder="master@tailor.com"
+                    className={`input-field ${isRtl ? 'pr-10' : 'pl-10'}`}
+                  />
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="block section-label mb-1.5" htmlFor="reg-password">
+                  {t('register.password')}
+                </label>
+                <div className="relative">
+                  <span className={`material-symbols-outlined absolute ${isRtl ? 'right-3' : 'left-3'} top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-lg pointer-events-none`}>
+                    lock
+                  </span>
+                  <input
+                    id="reg-password"
+                    type="password"
+                    placeholder="••••••••"
+                    className={`input-field ${isRtl ? 'pr-10' : 'pl-10'}`}
+                  />
+                </div>
+              </div>
+
+              {/* Submit */}
+              <button type="submit" className="btn-primary w-full py-3.5 text-sm rounded-lg mt-2 bg-tertiary hover:bg-tertiary-dim shadow-md">
+                <span className="material-symbols-outlined text-lg">how_to_reg</span>
                 {t('register.button')}
               </button>
-            </div>
-          </form>
-          <div className="mt-12 text-center">
-            <p className="text-on-surface-variant font-medium text-sm">
-              {t('register.have_account')} 
-              <Link to="/login" className="text-primary font-bold ml-1 rtl:mr-1 hover:underline underline-offset-4 decoration-2 decoration-primary-container">
+            </form>
+
+            <p className="mt-6 text-center text-sm text-on-surface-variant">
+              {t('register.have_account')}{' '}
+              <Link to="/login" className="text-primary font-bold hover:underline underline-offset-2">
                 {t('register.login')}
               </Link>
             </p>
-          </div>
-          <div className="mt-24 flex justify-between items-center opacity-30">
-            <div className={`flex ${isRtl ? 'space-x-reverse' : ''} space-x-6`}>
-              <span className="material-symbols-outlined text-on-surface-variant text-xl">straighten</span>
-              <span className="material-symbols-outlined text-on-surface-variant text-xl">texture</span>
-              <span className="material-symbols-outlined text-on-surface-variant text-xl">content_cut</span>
-            </div>
-            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">
-              Precision Utility
-            </div>
+
+            <p className="mt-8 text-center text-[10px] text-outline/60">
+              v2.4.0 • TailorMaster © 2024
+            </p>
           </div>
         </div>
       </div>
