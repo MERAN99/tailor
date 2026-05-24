@@ -13,14 +13,24 @@ const AddCustomer = () => {
     navigate('/search');
   };
 
-  const measurementFields = [
-    { label: t('measurements.neck'), key: 'neck', icon: '🧣' },
-    { label: t('measurements.chest'), key: 'chest', icon: '👔' },
-    { label: t('measurements.waist'), key: 'waist', icon: '📏' },
-    { label: t('measurements.shoulder'), key: 'shoulder', icon: '🫷' },
-    { label: t('measurements.sleeve'), key: 'sleeve', icon: '📐' },
-    { label: t('measurements.arm'), key: 'arm', icon: '💪' },
-    { label: t('measurements.back'), key: 'back', icon: '🔙' },
+  const qatFields = [
+    { label: t('measurements.sharwal'), key: 'sharwal', icon: '👖' },
+    { label: t('measurements.drezhi'), key: 'drezhi', icon: '📏' },
+    { label: t('measurements.pani_pisht'), key: 'pani_pisht', icon: '🔙' },
+    { label: t('measurements.qol'), key: 'qol', icon: '📐' },
+    { label: t('measurements.sing'), key: 'sing', icon: '👔' },
+    { label: t('measurements.kamar'), key: 'kamar', icon: '📏' },
+    { label: t('measurements.yakha'), key: 'yakha', icon: '🧣' },
+    { label: t('measurements.daling'), key: 'daling', icon: '🦵' },
+  ];
+
+  const pantolFields = [
+    { label: t('measurements.drezhi'), key: 'drezhi', icon: '📏' },
+    { label: t('measurements.sarj'), key: 'sarj', icon: '👖' },
+    { label: t('measurements.kamar'), key: 'kamar', icon: '📏' },
+    { label: t('measurements.qaida'), key: 'qaida', icon: '🪑' },
+    { label: t('measurements.chok'), key: 'chok', icon: '🦵' },
+    { label: t('measurements.daling'), key: 'daling', icon: '🦵' },
   ];
 
   return (
@@ -100,45 +110,94 @@ const AddCustomer = () => {
         </div>
 
         {/* ── Measurements Card ── */}
-        <div className="card p-6 sm:p-8">
-          <div className="flex items-center justify-between mb-6">
+        <div className="card p-6 sm:p-8 space-y-8">
+          <div className="flex items-center justify-between pb-4 border-b border-outline-variant/20">
             <h2 className="section-label">{t('add_customer.measurements')}</h2>
             <span className="badge bg-primary-container text-primary">
               {t('add_customer.unit_info')}
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6">
-            {measurementFields.map((field) => (
-              <div key={field.key}>
-                <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wide">
-                  <span className="me-1">{field.icon}</span>{field.label}
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.5"
-                    placeholder="0.0"
-                    className="input-field text-lg font-mono"
-                  />
-                  <span className={`absolute ${isRtl ? 'left-3' : 'right-3'} top-1/2 -translate-y-1/2 text-xs text-on-surface-variant/70 font-medium pointer-events-none`}>
-                    {isRtl ? 'سم' : 'cm'}
-                  </span>
+          {/* ── Qat Section ── */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-outline-variant/10">
+              <span className="text-xl">🧥</span>
+              <h3 className="font-bold text-lg text-primary">
+                {t('measurements.type_qat')}
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6">
+              {qatFields.map((field) => (
+                <div key={`qat-${field.key}`}>
+                  <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wide" htmlFor={`qat-${field.key}`}>
+                    <span className="me-1">{field.icon}</span>{field.label}
+                  </label>
+                  <div className="relative">
+                    <input
+                      id={`qat-${field.key}`}
+                      type="number"
+                      min="0"
+                      step="0.5"
+                      placeholder="0.0"
+                      className="input-field text-lg font-mono"
+                    />
+                    <span className={`absolute ${isRtl ? 'left-3' : 'right-3'} top-1/2 -translate-y-1/2 text-xs text-on-surface-variant/70 font-medium pointer-events-none`}>
+                      {isRtl ? 'سم' : 'cm'}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
 
-            {/* Fit Type */}
-            <div>
-              <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wide">
+          {/* ── Pantol Section ── */}
+          <div className="space-y-4 pt-4">
+            <div className="flex items-center gap-2 pb-2 border-b border-outline-variant/10">
+              <span className="text-xl">👖</span>
+              <h3 className="font-bold text-lg text-primary">
+                {t('measurements.type_pantol')}
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-6">
+              {pantolFields.map((field) => (
+                <div key={`pantol-${field.key}`}>
+                  <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wide" htmlFor={`pantol-${field.key}`}>
+                    <span className="me-1">{field.icon}</span>{field.label}
+                  </label>
+                  <div className="relative">
+                    <input
+                      id={`pantol-${field.key}`}
+                      type="number"
+                      min="0"
+                      step="0.5"
+                      placeholder="0.0"
+                      className="input-field text-lg font-mono"
+                    />
+                    <span className={`absolute ${isRtl ? 'left-3' : 'right-3'} top-1/2 -translate-y-1/2 text-xs text-on-surface-variant/70 font-medium pointer-events-none`}>
+                      {isRtl ? 'سم' : 'cm'}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Fit Type Section ── */}
+          <div className="pt-4 border-t border-outline-variant/20">
+            <div className="w-full sm:w-1/3">
+              <label className="block text-xs font-bold text-on-surface-variant mb-1.5 uppercase tracking-wide" htmlFor="fit-type">
                 ✂️ {t('measurements.fit_type')}
               </label>
-              <select className="input-field cursor-pointer appearance-none">
-                <option value="classic">{t('measurements.classic')}</option>
-                <option value="slim">{t('measurements.slim')}</option>
-                <option value="relaxed">{t('measurements.relaxed')}</option>
-              </select>
+              <div className="relative">
+                <select id="fit-type" className="input-field cursor-pointer appearance-none pr-8">
+                  <option value="classic">{t('measurements.classic')}</option>
+                  <option value="slim">{t('measurements.slim')}</option>
+                  <option value="relaxed">{t('measurements.relaxed')}</option>
+                </select>
+                <span className={`material-symbols-outlined absolute ${isRtl ? 'left-3' : 'right-3'} top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none`}>
+                  unfold_more
+                </span>
+              </div>
             </div>
           </div>
         </div>
